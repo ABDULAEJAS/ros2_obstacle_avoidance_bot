@@ -1,0 +1,21 @@
+# ROS 2 Build & Install Artifacts
+build/
+install/
+log/
+
+# VS Code & Cache files
+.vscode/
+*.db
+
+# Archives & Binaries
+*.zip
+*.tar.gz
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+
+# System files
+.DS_Store
+*.swp

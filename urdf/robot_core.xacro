@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <link name="base_footprint"/>
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.08" rpy="0 0 0"/>
+  </joint>
+  <link name="base_link">
+    <visual>
+      <geometry><cylinder radius="0.20" length="0.08"/></geometry>
+      <material name="dark_grey"><color rgba="0.2 0.2 0.2 1.0"/></material>
+    </visual>
+    <collision>
+      <geometry><cylinder radius="0.20" length="0.08"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="5.0"/>
+      <inertia ixx="0.052" ixy="0.0" ixz="0.0" iyy="0.052" iyz="0.0" izz="0.10"/>
+    </inertial>
+  </link>
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_wheel"/>
+    <origin xyz="0 0.17 -0.02" rpy="-1.5708 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  <link name="left_wheel">
+    <visual>
+      <geometry><cylinder radius="0.06" length="0.03"/></geometry>
+      <material name="black"><color rgba="0.0 0.0 0.0 1.0"/></material>
+    </visual>
+    <collision>
+      <geometry><cylinder radius="0.06" length="0.03"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="0.00048" ixy="0.0" ixz="0.0" iyy="0.00048" iyz="0.0" izz="0.0009"/>
+    </inertial>
+  </link>
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_wheel"/>
+    <origin xyz="0 -0.17 -0.02" rpy="-1.5708 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  <link name="right_wheel">
+    <visual>
+      <geometry><cylinder radius="0.06" length="0.03"/></geometry>
+      <material name="black"><color rgba="0.0 0.0 0.0 1.0"/></material>
+    </visual>
+    <collision>
+      <geometry><cylinder radius="0.06" length="0.03"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="0.00048" ixy="0.0" ixz="0.0" iyy="0.00048" iyz="0.0" izz="0.0009"/>
+    </inertial>
+  </link>
+  <joint name="front_caster_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_caster_wheel"/>
+    <origin xyz="0.15 0 -0.05" rpy="0 0 0"/>
+  </joint>
+  <link name="front_caster_wheel">
+    <visual>
+      <geometry><sphere radius="0.03"/></geometry>
+      <material name="light_grey"><color rgba="0.7 0.7 0.7 1.0"/></material>
+    </visual>
+    <collision>
+      <geometry><sphere radius="0.03"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.000036" ixy="0.0" ixz="0.0" iyy="0.000036" iyz="0.0" izz="0.000036"/>
+    </inertial>
+  </link>
+  <joint name="rear_caster_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="rear_caster_wheel"/>
+    <origin xyz="-0.15 0 -0.05" rpy="0 0 0"/>
+  </joint>
+  <link name="rear_caster_wheel">
+    <visual>
+      <geometry><sphere radius="0.03"/></geometry>
+      <material name="light_grey"><color rgba="0.7 0.7 0.7 1.0"/></material>
+    </visual>
+    <collision>
+      <geometry><sphere radius="0.03"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.000036" ixy="0.0" ixz="0.0" iyy="0.000036" iyz="0.0" izz="0.000036"/>
+    </inertial>
+  </link>
+  <gazebo reference="front_caster_wheel">
+    <mu1>0.001</mu1>
+    <mu2>0.001</mu2>
+    <kp>1000000.0</kp>
+    <kd>1.0</kd>
+  </gazebo>
+  <gazebo reference="rear_caster_wheel">
+    <mu1>0.001</mu1>
+    <mu2>0.001</mu2>
+    <kp>1000000.0</kp>
+    <kd>1.0</kd>
+  </gazebo>
+  <gazebo>
+    <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+      <left_joint>left_wheel_joint</left_joint>
+      <right_joint>right_wheel_joint</right_joint>
+      <wheel_separation>0.34</wheel_separation>
+      <wheel_radius>0.06</wheel_radius>
+      <topic>cmd_vel</topic>
+      <odom_topic>odom</odom_topic>
+      <frame_id>odom</frame_id>
+      <child_frame_id>base_footprint</child_frame_id>
+    </plugin>
+  </gazebo>
+</robot>

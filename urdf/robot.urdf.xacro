@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+Copyright 2026 Amin Ahmed G
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<robot name="ros2_obstacle_avoidance_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="inertia_macros.xacro"/>
+  <xacro:include filename="cybertruck_chassis.xacro"/>
+  <xacro:include filename="wheel_macro.xacro"/>
+  <xacro:include filename="lidar.xacro"/>
+  <xacro:include filename="camera.xacro"/>
+
+  <!-- Assemble Cybertruck Obstacle Avoidance Bot -->
+  <xacro:cybertruck_body/>
+
+  <xacro:drive_wheel name="left" reflect="1"/>
+  <xacro:drive_wheel name="right" reflect="-1"/>
+
+  <xacro:caster_wheel name="front" reflect="1"/>
+  <xacro:caster_wheel name="rear" reflect="-1"/>
+
+  <!-- Gazebo Sim Differential Drive Controller Plugin -->
+  <gazebo>
+    <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+      <left_joint>left_wheel_joint</left_joint>
+      <right_joint>right_wheel_joint</right_joint>
+      <wheel_separation>0.25</wheel_separation>
+      <wheel_radius>0.05</wheel_radius>
+      <max_linear_acceleration>1.5</max_linear_acceleration>
+      <min_linear_acceleration>-1.5</min_linear_acceleration>
+      <max_angular_acceleration>3.0</max_angular_acceleration>
+      <min_angular_acceleration>-3.0</min_angular_acceleration>
+      <max_torque>20.0</max_torque>
+      <topic>/cmd_vel</topic>
+      <odom_topic>/odom</odom_topic>
+      <tf_topic>/tf</tf_topic>
+      <frame_id>odom</frame_id>
+      <child_frame_id>base_link</child_frame_id>
+      <odom_publisher_frequency>30</odom_publisher_frequency>
+    </plugin>
+  </gazebo>
+
+</robot>
