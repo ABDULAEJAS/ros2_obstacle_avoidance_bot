@@ -1,4 +1,4 @@
-# Copyright 2026 Amin Ahmed G
+# Copyright 2026 Amin Ahmed G, Abdul Aejas
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='Amin Ahmed G',
+    maintainer='Amin Ahmed G, Abdul Aejas',
     maintainer_email='aminahmedg2005@gmail.com',
     description='ROS 2 Obstacle Avoidance Bot with 360 LiDAR Perception',
     license='Apache-2.0',

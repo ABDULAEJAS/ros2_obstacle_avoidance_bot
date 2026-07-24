@@ -79,7 +79,7 @@ An autonomous differential-drive robot simulation built for **ROS 2 (Jazzy / Hum
 source /opt/ros/jazzy/setup.zsh
 mkdir -p ~/obstacle_bot_ws/src
 cd ~/obstacle_bot_ws/src
-git clone https://github.com/Amin-Ahmed-G/ros2_obstacle_avoidance_bot.git
+git clone https://github.com/ABDULAEJAS/ros2_obstacle_avoidance_bot.git
 
 cd ~/obstacle_bot_ws
 colcon build --symlink-install
@@ -114,8 +114,7 @@ colcon test-result --all --verbose
 
 ---
 
-## Author & Maintainer
+## Author & Contributors
 
-- **Amin Ahmed G**
-- GitHub: [github.com/Amin-Ahmed-G](https://github.com/Amin-Ahmed-G)
-- Email: aminahmedg2005@gmail.com
+- **Amin Ahmed G** ([@Amin-Ahmed-G](https://github.com/Amin-Ahmed-G))
+- **Abdul Aejas** ([@ABDULAEJAS](https://github.com/ABDULAEJAS))

@@ -6,6 +6,7 @@
   <description>ROS 2 Obstacle Avoidance Bot with 360 LiDAR Perception and Cybertruck Xacro Model</description>
 
   <maintainer email="aminahmedg2005@gmail.com">Amin Ahmed G</maintainer>
+  <author email="abdulaejas@gmail.com">Abdul Aejas</author>
   <license>Apache-2.0</license>
 
   <exec_depend>rclpy</exec_depend>
